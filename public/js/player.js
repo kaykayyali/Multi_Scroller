@@ -53,4 +53,9 @@ Player.prototype.update = function() {
 		this.sprite.body.velocity.y = this.jump_power;
 		this.jump_timer = Game_Client.game.time.now + 750;
 	}
+	this.update_client_data();
+};
+
+Player.prototype.update_client_data = function() {
+	Client.user.position = this.sprite.position;
 };

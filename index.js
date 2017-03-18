@@ -13,10 +13,13 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
   	var new_user = new User(socket.id);
-  	socket.emit('user_created', new_user);
-  	socket.on('disconnect', function(data){
-   		console.log('user disconnected', data);
-  	});
+  	socket.emit('registered', new_user);
+	socket.on('user:registered', function(data){
+		io.emit('user:registered', data);
+	});
+	socket.on('user:update', function(data){
+		io.emit('user:update', data);
+	});
 });
 
 http.listen(process.env.PORT || 3000, function(){

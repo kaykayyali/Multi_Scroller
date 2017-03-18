@@ -17,10 +17,21 @@ var Game_State = {
 	update: function() {
 		this.player.update();
 		this.update_platforms();
+		this.update_other_players();
 	},
 	assign_keys: function() {
 		this.cursors = Game_Client.game.input.keyboard.createCursorKeys();
 		this.jump_key = Game_Client.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+	},
+	check_new_players: function() {
+		_.each(Client.known_users, _.bind(this.check_new_player, this));
+	},
+	check_new_player: function(value, key) {
+		console.log('checking new player', value, key)
+		if (!this.other_players[key]) {
+			console.log("Found a new player", value);
+			this.other_players[key] = new Other_Player(this, value);
+		}
 	},
 	create_background: function() {
 		this.background = Game_Client.game.add.tileSprite(0, 0, 640, 480, 'background');
@@ -41,11 +52,11 @@ var Game_State = {
 	},
 	set_environment: function() {
 		this.platforms = [];
+		this.other_players = {};
 		Game_Client.game.physics.arcade.gravity.y = 1000;
 	},
 	set_physics: function() {
 		var self = this;
-		console.log(this)
 		this.player.set_physics();
 	},
 	setFriction: function (player, platform) {
@@ -55,6 +66,13 @@ var Game_State = {
 	},
 	update_platforms: function() {
 		this.platforms.forEach(this.wrap_platform, this);
+	},
+	update_other_players: function() {
+		this.check_new_players();
+		_.each(this.other_players, _.bind(this.update_other_player,this));
+	},
+	update_other_player: function(value, key) {
+		this.other_players[key].update();
 	},
 	wrap_platform: function (platform) {
 		if (platform.body.velocity.x < 0 && platform.x <= -160) {

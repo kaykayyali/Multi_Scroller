@@ -1,22 +1,25 @@
 var Menu_State = {
 	preload: function() {
 		console.log("Initialized Menu State.");
-		var intro = Game_Client.game.add.audio('intro');
-		intro.loop = true;
-		intro.play();
+		this.background_music = Game_Client.game.add.audio('intro');
+		this.background_music.loop = true;
+		this.background_music.play();
 	},
 	create: function () {
 		this.create_background();
 		this.create_ground_emitter();
 		this.create_instructions();
+		this.assign_keys();
 	},
 	update: function() {
 		this.background.tilePosition.x -= 8;
+		if (this.main_key.isDown) {
+			this.transition_to_game();
+		}
 	},
-
-
-
-
+	assign_keys: function() {
+		this.main_key = Game_Client.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+	},
 	create_background: function() {
 		this.background = Game_Client.game.add.tileSprite(0, 0, 640, 480, 'background');
 	},
@@ -40,5 +43,9 @@ var Menu_State = {
 		this.instruction_label.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
 		//  We'll set the bounds to be from x0, y100 and be 800px wide by 100px high
 		this.instruction_label.setTextBounds(0, 300, 640, 50);
+	},
+	transition_to_game: function() {
+		this.background_music.stop();
+		Game_Client.game.state.start('game');
 	}
 };

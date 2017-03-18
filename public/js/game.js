@@ -9,6 +9,7 @@ Game.prototype.apply_states = function() {
 	this.game.state.add('boot', Boot_State);
 	this.game.state.add('load', Load_State);
 	this.game.state.add('menu', Menu_State);
+	this.game.state.add('game', Game_State);
 };
 
 Game.prototype.start_game= function() {

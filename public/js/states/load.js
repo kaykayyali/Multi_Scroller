@@ -10,7 +10,8 @@ var Load_State = {
 		Game_Client.game.load.image('bird_three', 'assets/images/bird_three.png');
 		Game_Client.game.load.image('cactus', 'assets/images/cactus.png');
 		Game_Client.game.load.image('tumble_weed', 'assets/images/tumble_weed.png');
-		console.log(this.loading_label);
+		Game_Client.game.load.image('player', 'assets/images/player_stand.png');
+		Game_Client.game.load.spritesheet('dude', 'assets/images/dude.png', 32, 48);
 		this.loading_label.setText('Loading: Complete');
 	},
 	create: function () {

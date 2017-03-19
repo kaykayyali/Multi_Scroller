@@ -2,8 +2,9 @@ var Load_State = {
 	preload: function() {
 		console.log("Initialized Load State.");
 		this.loading_label = Game_Client.game.add.text(80, 150, 'Loading: Audio', {font: '30px Courier', fill: '#ffffff'});
-		Game_Client.game.load.audio('intro', ['assets/audio/intro.wav']);
-		Game_Client.game.load.audio('jump', ['assets/audio/jump.wav']);
+		Game_Client.game.load.audio('intro', ['assets/audio/intro_2.wav']);
+		Game_Client.game.load.audio('jump', ['assets/audio/jump_2.wav']);
+
 		this.loading_label.setText('Loading: Images');
 		Game_Client.game.load.image('background', 'assets/images/background_2.jpg');
 		Game_Client.game.load.image('bird_one', 'assets/images/bird_one.png');
@@ -17,6 +18,7 @@ var Load_State = {
 		Game_Client.game.load.spritesheet('dude', 'assets/images/dude.png', 32, 48);
 		Game_Client.game.load.spritesheet('other_dude', 'assets/images/other_dude.png', 32, 48);
 		Game_Client.game.load.atlas('dpad', 'assets/joystick/dpad.png', 'assets/joystick/dpad.json');
+
 		this.loading_label.setText('Loading: Scripts');
 		Game_Client.game.load.script('joystick', 'assets/js/phaser-virtual-joystick.min.js');
 		this.loading_label.setText('Loading: Complete');

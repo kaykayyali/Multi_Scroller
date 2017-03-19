@@ -4,6 +4,7 @@ var Load_State = {
 		this.loading_label = Game_Client.game.add.text(80, 150, 'Loading: Audio', {font: '30px Courier', fill: '#ffffff'});
 		Game_Client.game.load.audio('intro', ['assets/audio/intro_2.wav']);
 		Game_Client.game.load.audio('jump', ['assets/audio/jump_2.wav']);
+		Game_Client.game.load.audio('laser', ['assets/audio/laser.wav']);
 
 		this.loading_label.setText('Loading: Images');
 		Game_Client.game.load.image('background', 'assets/images/background_2.jpg');
@@ -12,6 +13,7 @@ var Load_State = {
 		Game_Client.game.load.image('bird_three', 'assets/images/bird_three.png');
 		Game_Client.game.load.image('star', 'assets/images/star.png');
 		Game_Client.game.load.image('ship', 'assets/images/ship.png');
+		Game_Client.game.load.image('bullet', 'assets/images/laser.png');
 		Game_Client.game.load.image('player', 'assets/images/player_stand.png');
 		Game_Client.game.load.image('platform', 'assets/images/platform.png');
 		Game_Client.game.load.image('platform_ice', 'assets/images/platform_ice.png');

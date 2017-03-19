@@ -15,13 +15,35 @@ var Player = function(state){
 	this.pad = Game_Client.game.plugins.add(Phaser.VirtualJoystick);
 	this.stick = this.pad.addDPad(0, 0, 200, 'dpad');
 	this.stick.alignBottomLeft(0);
-	this.buttonA = this.pad.addButton(725, 405, 'dpad', 'button1-up', 'button1-down');
+	this.buttonA = this.pad.addButton(775, 405, 'dpad', 'button1-up', 'button1-down');
+	this.buttonB = this.pad.addButton(925, 405, 'dpad', 'button2-up', 'button2-down');
+	this.weapon = Game_Client.game.add.weapon(5, 'bullet');
+	this.weapon.bulletGravity = 0;
+	this.weapon.bulletRotateToVelocity = true;
+	console.log(this.weapon)
+	// this.weapon.setAll('body.allowGravity', false);
+	this.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+	this.weapon.trackSprite(this.sprite, 0, 30, true);
 	console.log(this.state);
 	this.buttonA.onDown.add(this.jump, this);
+	this.buttonB.onDown.add(this.fire, this);
+};
+
+Player.prototype.fire = function() {
+	if (this.facing === 'left') {
+		this.weapon.bulletSpeed = -500;
+		this.weapon.trackSprite(this.sprite, -10, 30, true);
+	}
+	else {
+		this.weapon.bulletSpeed = 500;
+		this.weapon.trackSprite(this.sprite, 10, 30, true);
+	}
+	this.weapon.fire();
 };
 
 Player.prototype.set_physics = function() {
 	Game_Client.game.physics.arcade.enable(this.sprite);
+	this.sprite.body.gravity.y = 1000;
 	this.sprite.body.collideWorldBounds = true;
 	this.sprite.body.bounce.y = 0.1;
 	this.sprite.body.friction = 10;
@@ -54,6 +76,11 @@ Player.prototype.update = function() {
 		this.jump()
 	}
 	this.update_client_data();
+	Game_Client.game.physics.arcade.overlap(this.weapon, this.players, this.bullet_hit_player, null, this);
+};
+
+Player.prototype.bullet_hit_player = function (player, laser) {
+	console.log('Hit!');
 };
 
 Player.prototype.set_friction = function (player, platform) {
@@ -69,6 +96,7 @@ Player.prototype.set_friction = function (player, platform) {
 Player.prototype.update_client_data = function() {
 	Client.user.position = this.sprite.position;
 	Client.user.facing = this.facing;
+	// Client.user.weapon = this.weapon;
 };
 
 Player.prototype.jump = function() {

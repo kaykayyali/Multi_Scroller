@@ -46,7 +46,7 @@ var Game_State = {
 		}
 	},
 	create_background: function() {
-		this.background = Game_Client.game.add.tileSprite(0, 0, 800, 3000, 'background');
+		this.background = Game_Client.game.add.tileSprite(0, 0, 1000, 3000, 'background');
 		this.space_emitter = Game_Client.game.add.emitter(500, 0, 10);
 		this.space_emitter.makeParticles(['star', 'ship']);
 		this.space_emitter.setXSpeed(-300, 300);
@@ -98,8 +98,8 @@ var Game_State = {
 	set_environment: function() {
 		this.platforms = [];
 		this.other_players = {};
-		Game_Client.game.physics.arcade.gravity.y = 1000;
-		Game_Client.game.world.setBounds(0, 0, 800, 3000);
+		// Game_Client.game.physics.arcade.gravity.y = 00;
+		Game_Client.game.world.setBounds(0, 0, 1000, 3000);
 	},
 	set_physics: function() {
 		var self = this;

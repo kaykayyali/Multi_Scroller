@@ -9,5 +9,7 @@ var Other_Player = function(state, user) {
 
 
 Other_Player.prototype.update = function() {
-	this.sprite.position = Client.known_users[this.user.id].position;
+	if (Client.known_users[this.user.id] && Client.known_users[this.user.id].position) {
+		this.sprite.position = Client.known_users[this.user.id].position;
+	}
 };

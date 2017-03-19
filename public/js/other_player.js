@@ -2,7 +2,7 @@ var Other_Player = function(state, user) {
 	this.state = state;
 	this.user = user;
 	// Spawn outside of bounds
-	this.sprite = Game_Client.game.add.sprite(-10, 400, 'dude');
+	this.sprite = Game_Client.game.add.sprite(-10, 3000, 'other_dude');
 	this.sprite.animations.add('left', [0, 1, 2, 3], 10, true);
 	this.sprite.animations.add('idle', [4], 20, true);
 	this.sprite.animations.add('right', [5, 6, 7, 8], 10, true);

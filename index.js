@@ -21,7 +21,6 @@ io.on('connection', function(socket){
 		io.emit('user:update', data);
 	});
 	socket.on('disconnect', function(){
-		console.log("DISCONNECTING ", socket.id)
 		io.emit('user:disconnect', socket.id);
 	});
 });

@@ -1,5 +1,5 @@
 var Game = function() {
-	this.game = new Phaser.Game(640, 480, Phaser.AUTO, 'game-target');
+	this.game = new Phaser.Game(800, 480, Phaser.AUTO, 'game');
 	this.apply_states();
 	this.start_game();
 	return this.game;

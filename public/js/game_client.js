@@ -5,5 +5,6 @@ var Game_Client = {
 	},
 	init_game: function() {
 		this.game = new Game();
+		this.has_started = true;
 	}
 };

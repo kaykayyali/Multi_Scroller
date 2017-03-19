@@ -5,7 +5,7 @@ var Load_State = {
 		Game_Client.game.load.audio('intro', ['assets/audio/intro.wav']);
 		Game_Client.game.load.audio('jump', ['assets/audio/jump.wav']);
 		this.loading_label.setText('Loading: Images');
-		Game_Client.game.load.image('background', 'assets/images/background_2.png');
+		Game_Client.game.load.image('background', 'assets/images/background_2.jpg');
 		Game_Client.game.load.image('bird_one', 'assets/images/bird_one.png');
 		Game_Client.game.load.image('bird_two', 'assets/images/bird_two.png');
 		Game_Client.game.load.image('bird_three', 'assets/images/bird_three.png');
@@ -13,7 +13,12 @@ var Load_State = {
 		Game_Client.game.load.image('tumble_weed', 'assets/images/tumble_weed.png');
 		Game_Client.game.load.image('player', 'assets/images/player_stand.png');
 		Game_Client.game.load.image('platform', 'assets/images/platform.png');
+		Game_Client.game.load.image('platform_ice', 'assets/images/platform_ice.png');
 		Game_Client.game.load.spritesheet('dude', 'assets/images/dude.png', 32, 48);
+		Game_Client.game.load.spritesheet('other_dude', 'assets/images/other_dude.png', 32, 48);
+		Game_Client.game.load.atlas('dpad', 'assets/joystick/dpad.png', 'assets/joystick/dpad.json');
+		this.loading_label.setText('Loading: Scripts');
+		Game_Client.game.load.script('joystick', 'assets/js/phaser-virtual-joystick.min.js');
 		this.loading_label.setText('Loading: Complete');
 	},
 	create: function () {

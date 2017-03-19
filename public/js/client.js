@@ -29,7 +29,9 @@ var Client = {
 	handle_registered: function(user) {
 		this.user = user;
 		console.log('User is ', user);
-		Game_Client.init();
+		if (!Game_Client.has_started) {
+			Game_Client.init();
+		}
 	},
 	handle_user_registered: function(user) {
 		if (user.id === this.user.id) {

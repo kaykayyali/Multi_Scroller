@@ -9,7 +9,7 @@ var Menu_State = {
 	},
 	create: function () {
 		this.create_background();
-		this.create_ground_emitter();
+		this.create_space_emitter();
 		this.create_instructions();
 		this.assign_keys();
 	},
@@ -33,14 +33,27 @@ var Menu_State = {
 	create_background: function() {
 		this.background = Game_Client.game.add.tileSprite(0, 0, 800, 480, 'background');
 	},
-	create_ground_emitter: function() {
-		this.ground_emitter = Game_Client.game.add.emitter(700, 200, 5);
-		//  Here we're passing an array of image keys. It will pick one at random when emitting a new particle.
-		this.ground_emitter.makeParticles(['cactus', 'tumble_weed']);
-		this.ground_emitter.setXSpeed(-400, -600);
-		this.ground_emitter.setYSpeed(5,10);
-		this.ground_emitter.setRotation(-50, 50);
-		this.ground_emitter.start(false, 2000, 500);
+	create_space_emitter: function() {
+		this.space_emitter = Game_Client.game.add.emitter(700, 0, 5);
+		this.space_emitter.makeParticles(['star', 'ship']);
+		this.space_emitter.setXSpeed(-5, 5);
+		this.space_emitter.setYSpeed(300,500);
+		this.space_emitter.setRotation(-100, 100);
+		this.space_emitter.start(false, 2000, 900);
+
+		this.space_emitter_two = Game_Client.game.add.emitter(100, 0, 5);
+		this.space_emitter_two.makeParticles(['star', 'ship']);
+		this.space_emitter_two.setXSpeed(-5, 5);
+		this.space_emitter_two.setYSpeed(300,500);
+		this.space_emitter_two.setRotation(-100, 100);
+		this.space_emitter_two.start(false, 2000, 800);
+
+		this.space_emitter_three = Game_Client.game.add.emitter(400, 0, 5);
+		this.space_emitter_three.makeParticles(['star', 'ship']);
+		this.space_emitter_three.setXSpeed(-5, 5);
+		this.space_emitter_three.setYSpeed(300,500);
+		this.space_emitter_three.setRotation(-100, 100);
+		this.space_emitter_three.start(false, 2000, 500);
 	},
 	create_instructions: function() {
 		this.main_label = Game_Client.game.add.text(0, 0, 'Super Action Multi Scroller', {font: '30px Courier', fill: '#fff', boundsAlignH: "center", boundsAlignV: "middle" });

@@ -47,6 +47,12 @@ var Game_State = {
 	},
 	create_background: function() {
 		this.background = Game_Client.game.add.tileSprite(0, 0, 800, 3000, 'background');
+		this.space_emitter = Game_Client.game.add.emitter(500, 0, 10);
+		this.space_emitter.makeParticles(['star', 'ship']);
+		this.space_emitter.setXSpeed(-300, 300);
+		this.space_emitter.setYSpeed(300,500);
+		this.space_emitter.setRotation(-100, 100);
+		this.space_emitter.start(false, 10000, 1000);
 	},
 	create_main_player: function() {
 		this.player = new Player(this);

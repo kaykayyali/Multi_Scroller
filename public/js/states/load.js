@@ -10,8 +10,8 @@ var Load_State = {
 		Game_Client.game.load.image('bird_one', 'assets/images/bird_one.png');
 		Game_Client.game.load.image('bird_two', 'assets/images/bird_two.png');
 		Game_Client.game.load.image('bird_three', 'assets/images/bird_three.png');
-		Game_Client.game.load.image('cactus', 'assets/images/cactus.png');
-		Game_Client.game.load.image('tumble_weed', 'assets/images/tumble_weed.png');
+		Game_Client.game.load.image('star', 'assets/images/star.png');
+		Game_Client.game.load.image('ship', 'assets/images/ship.png');
 		Game_Client.game.load.image('player', 'assets/images/player_stand.png');
 		Game_Client.game.load.image('platform', 'assets/images/platform.png');
 		Game_Client.game.load.image('platform_ice', 'assets/images/platform_ice.png');

@@ -58,7 +58,7 @@ Player.prototype.update = function() {
 
 Player.prototype.set_friction = function (player, platform) {
 	if (platform.key === 'platform_ice') {
-		this.sprite.body.x += Game_Client.game.rnd.integerInRange(-2, 2);
+		this.sprite.body.x += Game_Client.game.rnd.integerInRange(-3, 3);
 	}
 	else {
 		console.log("Adding this much to x", platform.body.x ,platform.body)

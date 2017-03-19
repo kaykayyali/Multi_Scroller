@@ -43,7 +43,8 @@ var Menu_State = {
 		this.ground_emitter.start(false, 2000, 500);
 	},
 	create_instructions: function() {
-		this.main_label = Game_Client.game.add.text(80, 25, 'Super Action Multi Scroller', {font: '30px Courier', fill: '#000000'});
+		this.main_label = Game_Client.game.add.text(0, 0, 'Super Action Multi Scroller', {font: '30px Courier', fill: '#fff', boundsAlignH: "center", boundsAlignV: "middle" });
+		this.main_label.setTextBounds(0, 25, 800, 50);
 		this.bar = Game_Client.game.add.graphics();
 		this.bar.beginFill(0x000000, 0.2);
 		this.bar.drawRect(0, 300, 800, 50);

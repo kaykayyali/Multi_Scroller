@@ -21,7 +21,7 @@ var Client = {
 		this.user = user;
 		console.log('User is ', user);
 		this.connection.emit('user:registered', this.user);
-		this.update = setInterval(_.bind(this.update_all, this), 1000);
+		this.update = setInterval(_.bind(this.update_all, this), 50);
 		Game_Client.init();
 	},
 	handle_user_registered: function(user) {

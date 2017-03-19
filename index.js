@@ -20,6 +20,10 @@ io.on('connection', function(socket){
 	socket.on('user:update', function(data){
 		io.emit('user:update', data);
 	});
+	socket.on('disconnect', function(){
+		console.log("DISCONNECTING ", socket.id)
+		io.emit('user:disconnect', socket.id);
+	});
 });
 
 http.listen(process.env.PORT || 3000, function(){

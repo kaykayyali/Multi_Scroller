@@ -3,13 +3,14 @@ var Player = function(state){
 	this.state = state;
 	this.sprite = Game_Client.game.add.sprite(100, 400, 'dude');
 	this.sprite.animations.add('left', [0, 1, 2, 3], 10, true);
-	this.sprite.animations.add('turn', [4], 20, true);
+	this.sprite.animations.add('idle', [4], 20, true);
 	this.sprite.animations.add('right', [5, 6, 7, 8], 10, true);
 	this.sprite.animations.play('right');
 	this.run_speed = 5;
-	this.jump_power = -500;
+	this.jump_power = -400;
 	this.facing = 'left';
 	this.jump_timer = 0;
+	this.jump = Game_Client.game.add.audio('jump');
 };
 
 Player.prototype.set_physics = function() {
@@ -38,18 +39,13 @@ Player.prototype.update = function() {
 		}
 	}
 	else {
-		if (this.facing != 'idle') {
-			this.sprite.animations.stop();
-			if (this.facing == 'left') {
-				this.sprite.frame = 0;
-			} 
-			else {
-				this.sprite.frame = 5;
-			}
-			this.facing = 'idle';
+		if (this.facing != 'turn') {
+			this.sprite.animations.play('idle');
+			this.facing = 'turn';
 		}
 	}
 	if (this.state.jump_key.isDown && this.standing) {
+		this.jump.play();
 		this.sprite.body.velocity.y = this.jump_power;
 		this.jump_timer = Game_Client.game.time.now + 750;
 	}
@@ -58,4 +54,5 @@ Player.prototype.update = function() {
 
 Player.prototype.update_client_data = function() {
 	Client.user.position = this.sprite.position;
+	Client.user.facing = this.facing;
 };

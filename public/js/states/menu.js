@@ -29,7 +29,7 @@ var Menu_State = {
 		this.ground_emitter.makeParticles(['cactus', 'tumble_weed']);
 		this.ground_emitter.setXSpeed(-400, -600);
 		this.ground_emitter.setYSpeed(5,10);
-		this.ground_emitter.setRotation(-50, 50)
+		this.ground_emitter.setRotation(-50, 50);
 		this.ground_emitter.start(false, 2000, 500);
 	},
 	create_instructions: function() {

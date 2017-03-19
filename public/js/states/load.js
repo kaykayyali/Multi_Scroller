@@ -3,6 +3,7 @@ var Load_State = {
 		console.log("Initialized Load State.");
 		this.loading_label = Game_Client.game.add.text(80, 150, 'Loading: Audio', {font: '30px Courier', fill: '#ffffff'});
 		Game_Client.game.load.audio('intro', ['assets/audio/intro.wav']);
+		Game_Client.game.load.audio('jump', ['assets/audio/jump.wav']);
 		this.loading_label.setText('Loading: Images');
 		Game_Client.game.load.image('background', 'assets/images/background_2.png');
 		Game_Client.game.load.image('bird_one', 'assets/images/bird_one.png');

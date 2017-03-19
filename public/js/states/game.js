@@ -1,6 +1,8 @@
 var Game_State = {
 	preload: function() {
 		console.log("Initialized Game State.");
+		// Login player
+		Client.connect_player();
 		var intro = Game_Client.game.add.audio('intro');
 		Game_Client.game.time.desiredFps = 60;
 		intro.loop = true;
@@ -23,11 +25,20 @@ var Game_State = {
 		this.cursors = Game_Client.game.input.keyboard.createCursorKeys();
 		this.jump_key = Game_Client.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 	},
+	check_delete_players: function() {
+		_.each(this.other_players, _.bind(this.check_delete_player, this));
+	},
+	check_delete_player: function(value, key) {
+		if (!Client.known_users[key]) {
+			console.log("Deleted a player ", value);
+			this.other_players[key].sprite.kill();
+			delete this.other_players[key];
+		}
+	},
 	check_new_players: function() {
 		_.each(Client.known_users, _.bind(this.check_new_player, this));
 	},
 	check_new_player: function(value, key) {
-		console.log('checking new player', value, key)
 		if (!this.other_players[key]) {
 			console.log("Found a new player", value);
 			this.other_players[key] = new Other_Player(this, value);
@@ -69,6 +80,7 @@ var Game_State = {
 	},
 	update_other_players: function() {
 		this.check_new_players();
+		this.check_delete_players();
 		_.each(this.other_players, _.bind(this.update_other_player,this));
 	},
 	update_other_player: function(value, key) {

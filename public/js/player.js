@@ -10,7 +10,8 @@ var Player = function(state){
 	this.jump_power = -400;
 	this.facing = 'left';
 	this.jump_timer = 0;
-	this.jump = Game_Client.game.add.audio('jump');
+	this.jump_sound = Game_Client.game.add.audio('jump');
+	Game_Client.game.input.onDown.add(this.jump, this);
 };
 
 Player.prototype.set_physics = function() {
@@ -22,7 +23,6 @@ Player.prototype.set_physics = function() {
 
 Player.prototype.update = function() {
 	Game_Client.game.physics.arcade.collide(this.sprite, this.state.platforms, this.state.setFriction, null, this);
-	this.standing = this.sprite.body.blocked.down || this.sprite.body.touching.down;
 	this.sprite.body.velocity.x = 0;
 	if (this.state.cursors.left.isDown) {
 		this.sprite.body.velocity.x = -150;
@@ -44,10 +44,8 @@ Player.prototype.update = function() {
 			this.facing = 'turn';
 		}
 	}
-	if (this.state.jump_key.isDown && this.standing) {
-		this.jump.play();
-		this.sprite.body.velocity.y = this.jump_power;
-		this.jump_timer = Game_Client.game.time.now + 750;
+	if (this.state.jump_key.isDown) {
+		this.jump()
 	}
 	this.update_client_data();
 };
@@ -55,4 +53,15 @@ Player.prototype.update = function() {
 Player.prototype.update_client_data = function() {
 	Client.user.position = this.sprite.position;
 	Client.user.facing = this.facing;
+};
+
+Player.prototype.jump = function() {
+	console.log("Jump attempted")
+	Game_Client.game.physics.arcade.collide(this.sprite, this.state.platforms, this.state.setFriction, null, this);
+	this.standing = this.sprite.body.blocked.down || this.sprite.body.touching.down;
+	if (this.standing) {
+		this.jump_sound.play();
+		this.sprite.body.velocity.y = this.jump_power;
+		this.jump_timer = Game_Client.game.time.now + 750;
+	}
 };

@@ -17,7 +17,7 @@ Other_Player.prototype.update = function() {
 	if (Client.known_users[this.user.id] && Client.known_users[this.user.id].position && !this.tween) {
 		var new_x = Client.known_users[this.user.id].position.x;
 		var new_y = Client.known_users[this.user.id].position.y;
-		this.tween = Game_Client.game.add.tween(this.sprite).to({x:new_x, y:new_y}, 150, "Sine.easeInOut", true);
+		this.tween = Game_Client.game.add.tween(this.sprite).to({x:new_x, y:new_y}, 150,  Phaser.Easing.Bounce.Out, true);
 		this.tween.onComplete.add(this.remove_tween, this);
 	}
 	if (Client.known_users[this.user.id] && Client.known_users[this.user.id].facing) {
@@ -28,7 +28,6 @@ Other_Player.prototype.update = function() {
 				this.sprite.animations.play('left');
 		}
 		else {
-			console.log("SEtting to idle")
 			this.sprite.animations.play('idle');
 		}
 	}

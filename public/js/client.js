@@ -46,7 +46,7 @@ var Client = {
 		// console.log('User update recieved', user);
 	},
 	start_updates: function() {
-		this.update = setInterval(_.bind(this.update_all, this), 200);
+		this.update = setInterval(_.bind(this.update_all, this), 100);
 	},
 	stop_uppdates: function() {
 		delete this.update;

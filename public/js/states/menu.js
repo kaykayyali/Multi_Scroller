@@ -4,6 +4,8 @@ var Menu_State = {
 		this.background_music = Game_Client.game.add.audio('intro');
 		this.background_music.loop = true;
 		this.background_music.play();
+		// Game_Client.game.input.onDown.add(this.go_full, this);
+		Game_Client.game.input.onDown.add(this.transition_to_game, this);
 	},
 	create: function () {
 		this.create_background();
@@ -15,6 +17,14 @@ var Menu_State = {
 		this.background.tilePosition.x -= 8;
 		if (this.main_key.isDown) {
 			this.transition_to_game();
+		}
+	},
+	go_full: function() {
+		if (Game_Client.game.scale.isFullScreen) {
+			Game_Client.game.scale.stopFullScreen();
+		}
+		else {
+			Game_Client.game.scale.startFullScreen(false);
 		}
 	},
 	assign_keys: function() {
@@ -39,7 +49,7 @@ var Menu_State = {
 		this.bar.drawRect(0, 300, 800, 50);
 		var style = { font: "20px Courier", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
 		//  The Text is positioned at 0, 100
-		this.instruction_label = Game_Client.game.add.text(0, 0, 'Press Space to play', style);
+		this.instruction_label = Game_Client.game.add.text(0, 0, 'Space or Touch to play', style);
 		this.instruction_label.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
 		//  We'll set the bounds to be from x0, y100 and be 800px wide by 100px high
 		this.instruction_label.setTextBounds(0, 300, 640, 50);
